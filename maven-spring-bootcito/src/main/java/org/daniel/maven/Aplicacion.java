@@ -4,6 +4,7 @@ package org.daniel.maven;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +21,10 @@ public class Aplicacion {
         SpringApplication.run(Aplicacion.class, args);
         
         System.out.println("Un mensaje desde spring boot");
+        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(ConfiguracionBasica.class);
         
-        LeerArchivo objeto=new LeerArchivo();
-        System.out.println(objeto.leer());
+        Leer servicioLeer=ctx.getBean(Leer.class);
+        System.out.println(servicioLeer.leer());
     }
 }
     
